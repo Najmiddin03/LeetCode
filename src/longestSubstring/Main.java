@@ -4,6 +4,11 @@ import java.util.HashMap;
 
 public class Main {
 
+//	Given a string s, find the length of the longest 
+//	substring without repeating characters.
+
+//	https://leetcode.com/problems/longest-substring-without-repeating-characters/
+
 	public static void main(String[] args) {
 		System.out.println(longestSubstring(""));
 	}
