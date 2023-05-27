@@ -1,11 +1,12 @@
 package topInterview150;
 
+import java.util.Arrays;
+
 public class ProductExceptSelf {
 
 	public static void main(String[] args) {
 		int[] arr = { 5, 1, 4, 2, 3, 5 };
-		int[] ans = { 1, 5, 5, 20, 40, 120, 600 };
-		int suffix = 600;
+		System.out.println(Arrays.toString(productExceptSelf(arr)));
 	}
 
 	static int[] productExceptSelf(int[] nums) {
