@@ -10,22 +10,27 @@ public class ReverseWords {
 //	The returned string should only have a single space separating the words. Do not include any extra spaces.
 
 	public static void main(String[] args) {
-
+		System.out.println(reverseWords(" hello my    good neighbour        "));
 	}
 
 	public static String reverseWords(String s) {
-		String[] str = s.trim().split(" ");
-		s = "";
-		for (int i = str.length - 1; i >= 0; i--) {
-			if (str[i] == "") {
-				continue;
-			}
-			System.out.println(str[i]);
-			s += str[i];
-		}
 		s = s.trim();
-		System.gc();
-		return s;
-	}
+		char[] charArr = s.toCharArray();
+		char[] ans = new char[charArr.length];
+		int i = charArr.length - 1;
+		int ind = 0;
 
+		while (i >= 0) {
+			int j = i;
+			while (i >= 0 && charArr[i] != ' ')
+				i--;
+			if (ind > 0)
+				ans[ind++] = ' ';
+			for (int k = i + 1; k <= j; k++)
+				ans[ind++] = charArr[k];
+			while (i >= 0 && charArr[i] == ' ')
+				i--;
+		}
+		return new String(ans, 0, ind);
+	}
 }
