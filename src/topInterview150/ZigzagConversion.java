@@ -13,36 +13,35 @@ public class ZigzagConversion {
 //	Write the code that will take a string and make this conversion given a number of rows
 
 	public static void main(String[] args) {
-		System.out.println(convert("PAYPALISHIRING", 3));
+		System.out.println(convert("HELLOWORLD", 3));
 	}
 
 	public static String convert(String s, int numRows) {
-		if (numRows == 1 || s.length() <= numRows) {
+		if (numRows == 1) {
 			return s;
 		}
 
-		StringBuilder[] rows = new StringBuilder[numRows];
-		for (int i = 0; i < numRows; i++) {
-			rows[i] = new StringBuilder();
-		}
+		int size = s.length();
+		final char[] chars = new char[size];
+		final int step = numRows * 2 - 2;
+		int subStep = step;
+		int row = 0;
+		int index = row;
+		for (int i = 0; i < size; i++) {
+			chars[i] = s.charAt(index);
 
-		int currentRow = 0;
-		boolean goingDown = false;
-
-		for (char c : s.toCharArray()) {
-			rows[currentRow].append(c);
-			if (currentRow == 0 || currentRow == numRows - 1) {
-				goingDown = !goingDown;
+			if (0 < subStep && subStep < step && index + subStep < size) {
+				chars[++i] = s.charAt(index + subStep);
 			}
-			currentRow += goingDown ? 1 : -1;
+
+			index += step;
+			if (index >= size) {
+				index = ++row;
+				subStep -= 2;
+			}
 		}
 
-		StringBuilder result = new StringBuilder();
-		for (StringBuilder row : rows) {
-			result.append(row);
-		}
-
-		return result.toString();
+		return new String(chars);
 	}
 
 }
